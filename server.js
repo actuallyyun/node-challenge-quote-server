@@ -19,6 +19,17 @@ app.get("/", function (request, response) {
 
 //START OF YOUR CODE...
 
+app.get("/quotes/random", (req, res) => {
+  const num = quotes.length
+  const randomIndex = Math.floor(Math.random() * num)
+  const randomQuote = quotes[randomIndex]
+  res.send(randomQuote)
+})
+
+app.get("/quotes", (req, res) => {
+  res.send(quotes)
+})
+
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
@@ -32,6 +43,6 @@ function pickFromArray(arr) {
 //Start our server so that it listens for HTTP requests!
 let port = 5000;
 
-app.listen( port, function () {
+app.listen(port, function () {
   console.log("Your app is listening on port " + port);
 });

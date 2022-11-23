@@ -30,6 +30,15 @@ app.get("/quotes", (req, res) => {
   res.send(quotes)
 })
 
+app.get("/quotes/search", (req, res) => {
+  const term = req.query.term.toLowerCase()
+  const result = quotes.filter(quote => quote.author.toLowerCase().includes(term) || quote.quote.toLowerCase().includes(term))
+  res.send(result)
+
+
+
+})
+
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array

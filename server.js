@@ -1,18 +1,10 @@
-const { response } = require("express");
-// server.js
-// This is where your node app starts
+import express, { response } from "express"
+import random from "random-item"
+import quotes from "./quotes.json " assert { type: 'json' }
 
-//load the 'express' module which makes writing webservers easy
-const express = require("express");
 const app = express();
 
-//load the quotes JSON
-const quotes = require("./quotes.json");
 
-// Now register handlers for some routes:
-//   /                  - Return some helpful welcome info (text)
-//   /quotes            - Should return all quotes (json)
-//   /quotes/random     - Should return ONE quote (json)
 app.get("/", function (request, response) {
   response.send("Neill's Quote Server!  Ask me for /quotes/random, or /quotes");
 });
@@ -20,9 +12,9 @@ app.get("/", function (request, response) {
 //START OF YOUR CODE...
 
 app.get("/quotes/random", (req, res) => {
-  const num = quotes.length
-  const randomIndex = Math.floor(Math.random() * num)
-  const randomQuote = quotes[randomIndex]
+  // const num = quotes.length
+  // const randomIndex = Math.floor(Math.random() * num)
+  const randomQuote = random(quotes)
   res.send(randomQuote)
 })
 
